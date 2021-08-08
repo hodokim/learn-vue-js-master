@@ -9,7 +9,7 @@
 <body>
     <div id="app">
         <app-header></app-header>
-        <app-Content></app-Content>
+        <app-Content v-on:pass="deliverNum"></app-Content>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -21,12 +21,16 @@
             template:'<div>content<button v-on:click="passNum">pass</button></div>',
             methods:{
                 passNum: function() {
-                    this.$emit('pass1',10);
+                    this.$emit('pass',10);
                 }
             }
         }
 
         new Vue({
+
+
+
+            
             el:'#app',
             components:{
                 'app-header':appHeader,
@@ -34,6 +38,11 @@
             },
             data:{
                 num:0
+            },
+            methods:{
+               deliverNum: function(value){
+                 this.num = value;
+               } 
             }
         })
     </script>
